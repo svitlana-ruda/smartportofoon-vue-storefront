@@ -3,10 +3,12 @@
     <div class="relative">
       <input
         class="
-         py10 w-100 border-box brdr-none brdr-bottom-1
+        w-100 border-box brdr-none
          brdr-cl-primary h4 sans-serif
+         newsletter__input
        "
-        :class="{pr30: type === 'password', empty: value === ''}"
+        :placeholder="placeholder"
+        :class="{ pr30: type === 'password', empty: value === '' }"
         :type="type === 'password' ? passType : type"
         :name="name"
         :autocomplete="autocomplete"
@@ -17,8 +19,8 @@
         @blur="$emit('blur')"
         @keyup.enter="$emit('keyup.enter', $event.target.value)"
         @keyup="$emit('keyup', $event)"
-      >
-      <label>{{ placeholder }}</label>
+      />
+      <!-- <label>{{ placeholder }}</label> -->
     </div>
     <button
       v-if="iconActive"
@@ -45,7 +47,7 @@ export default {
   components: {
     ValidationMessages
   },
-  data () {
+  data() {
     return {
       passType: 'password',
       iconActive: false,
@@ -92,7 +94,7 @@ export default {
     }
   },
   methods: {
-    togglePassType () {
+    togglePassType() {
       if (this.passType === 'password') {
         this.passType = 'text'
         this.icon = 'visibility'
@@ -102,18 +104,18 @@ export default {
       }
     },
     // setFocus sets focus on a field which has a value of 'ref' tag equal to fieldName
-    setFocus (fieldName) {
+    setFocus(fieldName) {
       if (this.name === fieldName) {
         this.$refs[this.name].focus()
       }
     }
   },
-  created () {
+  created() {
     if (this.type === 'password') {
       this.iconActive = true
     }
   },
-  mounted () {
+  mounted() {
     if (this.focus) {
       this.$refs[this.name].focus()
     }
@@ -122,56 +124,72 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import '~theme/css/variables/colors';
-  @import '~theme/css/helpers/functions/color';
-  $color-tertiary: color(tertiary);
-  $color-black: color(black);
-  $color-puerto-rico: color(puerto-rico);
-  $color-hover: color(tertiary, $colors-background);
+@import '~theme/css/variables/colors';
+@import '~theme/css/helpers/functions/color';
+$color-tertiary: color(tertiary);
+$color-black: color(black);
+$color-puerto-rico: color(puerto-rico);
+$color-hover: color(tertiary, $colors-background);
 
-  .base-input {
-    min-height: 4.5rem;
+// .base-input {
+//   min-height: 4.5rem;
+// }
+
+input {
+  background: inherit;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    border-color: $color-puerto-rico;
   }
 
-  input {
-    background: inherit;
+  &:disabled,
+  &:disabled + label {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+label {
+  color: #999;
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  left: 0;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+// input:focus ~ label,
+// input:not(.empty) ~ label {
+//   top: -10px;
+//   font-size: 14px;
+//   color: $color-puerto-rico;
+// }
 
-    &:hover,
-    &:focus {
-      outline: none;
-      border-color: $color-puerto-rico;
-    }
+input::placeholder {
+  color: #c6c6c6;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 30px;
+  vertical-align: middle;
+  @media (max-width: 1199.98px) {
+    font-size: 13px;
+  }
+  @media (max-width: 575.98px) {
+    font-size: 12px;
+  }
+}
 
-    &:disabled,
-    &:disabled + label {
-      opacity: 0.5;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
+.icon {
+  right: 6px;
+  top: 10px;
+  &:hover,
+  &:focus {
+    color: $color-hover;
   }
-  label {
-    color:#999;
-    position:absolute;
-    pointer-events:none;
-    user-select: none;
-    left: 0;
-    top: 10px;
-    transition:0.2s ease all;
-    -moz-transition:0.2s ease all;
-    -webkit-transition:0.2s ease all;
-  }
-  input:focus ~ label, input:not(.empty) ~ label{
-    top: -10px;
-    font-size:14px;
-    color:$color-puerto-rico;
-  }
-
-  .icon {
-    right: 6px;
-    top: 10px;
-    &:hover,
-    &:focus {
-      color: $color-hover;
-    }
-  }
+}
 </style>

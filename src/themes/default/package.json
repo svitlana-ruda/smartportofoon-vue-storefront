@@ -11,7 +11,10 @@
   "license": "MIT",
   "dependencies": {
     "bodybuilder": "2.2.21",
+    "jquery": "^3.4.1",
+    "swiper": "^5.3.6",
     "vue": "^2.6.11",
+    "vue-awesome-swiper": "^4.0.0-rc.0",
     "vue-carousel": "^0.18",
     "vue-no-ssr": "^0.2.2",
     "vue-progressbar": "^0.7.5",

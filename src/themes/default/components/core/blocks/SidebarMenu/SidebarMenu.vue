@@ -1,10 +1,7 @@
 <template>
   <div class="sidebar-menu fixed mw-100 bg-cl-secondary">
     <div class="row brdr-bottom-1 brdr-cl-bg-secondary">
-      <div
-        v-if="submenu.depth"
-        class="col-xs bg-cl-primary"
-      >
+      <div v-if="submenu.depth" class="col-xs bg-cl-primary">
         <sub-btn type="back" class="bg-cl-transparent brdr-none" />
       </div>
       <div class="col-xs bg-cl-primary">
@@ -21,15 +18,8 @@
     <div class="sidebar-menu__container row" ref="container">
       <div class="col-xs-12 h4 serif">
         <ul class="p0 m0 relative sidebar-menu__list" :style="mainListStyles">
-          <li
-            @click="closeMenu"
-            class="brdr-bottom-1 brdr-cl-bg-secondary bg-cl-primary"
-          >
-            <router-link
-              class="block px25 py20 cl-accent no-underline"
-              :to="localizedRoute('/')"
-              exact
-            >
+          <li @click="closeMenu" class="brdr-bottom-1 brdr-cl-bg-secondary bg-cl-primary">
+            <router-link class="block px25 py20 cl-accent no-underline" :to="localizedRoute('/')" exact>
               {{ $t('Home') }}
             </router-link>
           </li>
@@ -39,21 +29,14 @@
             @click="closeMenu"
             v-for="category in visibleCategories"
           >
-            <div
-              v-if="isCurrentMenuShowed"
-              class="subcategory-item"
-            >
+            <div v-if="isCurrentMenuShowed" class="subcategory-item">
               <sub-btn
                 v-if="category.children_count > 0"
                 class="bg-cl-transparent brdr-none fs-medium"
                 :id="category.id"
                 :name="category.name"
               />
-              <router-link
-                v-else
-                class="px25 py20 cl-accent no-underline col-xs"
-                :to="categoryLink(category)"
-              >
+              <router-link v-else class="px25 py20 cl-accent no-underline col-xs" :to="categoryLink(category)">
                 {{ category.name }}
               </router-link>
             </div>
@@ -65,11 +48,7 @@
               :parent-path="category.url_path"
             />
           </li>
-          <li
-            v-if="isCurrentMenuShowed"
-            @click="closeMenu"
-            class="bg-cl-secondary"
-          >
+          <li v-if="isCurrentMenuShowed" @click="closeMenu" class="bg-cl-secondary">
             <router-link
               class="block px25 py20 brdr-bottom-1 brdr-cl-secondary cl-accent no-underline fs-medium-small"
               :to="localizedRoute('/sale')"
@@ -78,11 +57,7 @@
               {{ $t('Sale') }}
             </router-link>
           </li>
-          <li
-            v-if="isCurrentMenuShowed"
-            @click="closeMenu"
-            class="bg-cl-secondary"
-          >
+          <li v-if="isCurrentMenuShowed" @click="closeMenu" class="bg-cl-secondary">
             <router-link
               class="block px25 py20 brdr-bottom-1 brdr-cl-secondary cl-accent no-underline fs-medium-small"
               :to="localizedRoute('/magazine')"
@@ -91,11 +66,7 @@
               {{ $t('Magazine') }}
             </router-link>
           </li>
-          <li
-            v-if="compareIsActive && isCurrentMenuShowed"
-            @click="closeMenu"
-            class="bg-cl-secondary"
-          >
+          <li v-if="compareIsActive && isCurrentMenuShowed" @click="closeMenu" class="bg-cl-secondary">
             <router-link
               class="block px25 py20 brdr-bottom-1 brdr-cl-secondary cl-accent no-underline fs-medium-small"
               :to="localizedRoute('/compare')"
@@ -104,10 +75,7 @@
               {{ $t('Compare products') }}
             </router-link>
           </li>
-          <li
-            @click="login"
-            class="brdr-bottom-1 brdr-cl-secondary bg-cl-secondary flex"
-          >
+          <li @click="login" class="brdr-bottom-1 brdr-cl-secondary bg-cl-secondary flex">
             <sub-btn
               v-if="currentUser"
               id="my-account-links"
@@ -130,6 +98,15 @@
               {{ $t('My account') }}
             </a>
           </li>
+          <li v-if="isCurrentMenuShowed" @click="closeMenu" class="bg-cl-secondary">
+            <router-link
+              class="block px25 py20 brdr-bottom-1 brdr-cl-secondary cl-accent no-underline fs-medium-small"
+              :to="localizedRoute('/smartportofoon')"
+              exact
+            >
+              {{ $t('Smartportofoon') }}
+            </router-link>
+          </li>
         </ul>
       </div>
     </div>
@@ -151,7 +128,7 @@ export default {
     SubBtn
   },
   mixins: [SidebarMenu],
-  data () {
+  data() {
     return {
       myAccountLinks: [
         {
@@ -189,36 +166,36 @@ export default {
     }
   },
   computed: {
-    mainListStyles () {
+    mainListStyles() {
       return this.submenu.depth ? `transform: translateX(${this.submenu.depth * 100}%)` : false
     },
     ...mapState({
       submenu: state => state.ui.submenu,
       currentUser: state => state.user.current
     }),
-    getSubmenu () {
+    getSubmenu() {
       return this.submenu
     },
-    visibleCategories () {
+    visibleCategories() {
       return this.categories.filter(category => {
         return category.product_count > 0 || category.children_count > 0
       })
     },
-    isCurrentMenuShowed () {
+    isCurrentMenuShowed() {
       return !this.getSubmenu || !this.getSubmenu.depth
     }
   },
-  mounted () {
+  mounted() {
     this.$nextTick(() => {
-      this.componentLoaded = true;
+      this.componentLoaded = true
       disableBodyScroll(this.$refs.container)
     })
   },
-  destroyed () {
+  destroyed() {
     clearAllBodyScrollLocks()
   },
   methods: {
-    login () {
+    login() {
       if (!this.currentUser && this.isCurrentMenuShowed) {
         this.$nextTick(() => {
           this.$store.commit('ui/setAuthElem', 'login')
@@ -227,7 +204,7 @@ export default {
         })
       }
     },
-    categoryLink (category) {
+    categoryLink(category) {
       return formatCategoryLink(category)
     }
   }
@@ -235,7 +212,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~theme/css/animations/transitions";
+@import '~theme/css/animations/transitions';
 @import '~theme/css/variables/colors';
 @import '~theme/css/helpers/functions/color';
 $bg-secondary: color(secondary, $colors-background);
@@ -288,7 +265,8 @@ $color-mine-shaft: color(mine-shaft);
   }
 
   button {
-    color: $color-mine-shaft;a {
+    color: $color-mine-shaft;
+    a {
       color: $color-mine-shaft;
     }
   }
@@ -304,6 +282,10 @@ $color-mine-shaft: color(mine-shaft);
       }
     }
   }
-
+  @media (max-width: 595px) {
+    .no-mobile {
+      display: none;
+    }
+  }
 }
 </style>

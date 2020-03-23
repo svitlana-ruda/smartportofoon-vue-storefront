@@ -1,0 +1,51 @@
+.awesome {
+  &__phone {
+    color: #8dc73f;
+    font-size: 36px;
+    @media (max-width: 991.98px) {
+      font-size: 24px;
+    }
+  }
+  &__mail {
+    color: #ffffff;
+    font-size: 16px;
+  }
+  &__facebook {
+    color: #ffffff;
+    font-size: 24px;
+  }
+  &__twitter {
+    color: #ffffff;
+    font-size: 24px;
+  }
+  &__cart {
+    color: white;
+    font-size: 24px;
+  }
+  &__close {
+    color: #626262;
+    font-size: 16px;
+  }
+  &__facebook--green {
+    color: #8dc73f;
+    font-size: 42px;
+  }
+  &__twitter--green {
+    color: #8dc73f;
+    font-size: 42px;
+  }
+  &__phone--white {
+    @media (max-width: 575.98px) {
+      font-size: 14px;
+    }
+  }
+  &__mail--white {
+    @media (max-width: 575.98px) {
+      font-size: 14px;
+    }
+  }
+  &__hamburger {
+    color: #ffffff;
+    font-size: 24px;
+  }
+}
