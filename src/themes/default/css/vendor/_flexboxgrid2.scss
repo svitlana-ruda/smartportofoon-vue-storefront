@@ -71,20 +71,20 @@
   flex-direction: column-reverse;
 }
 
-// [class^="col-"] {
-//   box-sizing: border-box;
-//   -webkit-box-flex: 0;
-//   -ms-flex: 0 0 auto;
-//   flex: 0 0 auto;
-//   -ms-flex-preferred-size: 100%;
-//   flex-basis: 100%;
-//   padding-right: 8px;
-//   padding-left: 8px;
-//   max-width: 100%;
-// }
+[class^="col-"] {
+  box-sizing: border-box;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  padding-right: 8px;
+  padding-left: 8px;
+  max-width: 100%;
+}
 
-[class^='col-xs'],
-[class*=' col-xs'] {
+[class^="col-xs"],
+[class*=" col-xs"] {
   box-sizing: border-box;
   -webkit-box-flex: 0;
   -ms-flex: 0 0 auto;

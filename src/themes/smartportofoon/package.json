@@ -1,0 +1,27 @@
+{
+  "name": "@vue-storefront/theme-smartportofoon",
+  "version": "1.11.2",
+  "description": "Default theme for Vue Storefront",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cd ../../../ && node core/scripts/server"
+  },
+  "author": "pkarw <pkarwatka@divante.pl> and contributors",
+  "license": "MIT",
+  "dependencies": {
+    "bodybuilder": "2.2.21",
+    "jquery": "^3.4.1",
+    "swiper": "^5.3.6",
+    "vue": "^2.6.11",
+    "vue-awesome-swiper": "^4.0.0-rc.0",
+    "vue-carousel": "^0.18",
+    "vue-no-ssr": "^0.2.2",
+    "vue-progressbar": "^0.7.5",
+    "vuelidate": "^0.7.5",
+    "vuex": "^3.1.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

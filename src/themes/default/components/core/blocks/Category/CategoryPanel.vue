@@ -1,6 +1,8 @@
 <template>
   <div class="categories">
-    <div class="categories__handler">
+    <div
+      class="categories__handler"
+    >
       <h4 class="categories__heading">
         {{ $t('Filter by categories') }}
       </h4>
@@ -32,17 +34,15 @@ export default {
       default: () => []
     }
   },
-  data() {
-    return {}
+  data () {
+    return {
+    }
   },
   methods: {
-    toggleCategory(category) {
+    toggleCategory (category) {
       const isSelected = this.value.includes(category.category_id)
       if (isSelected) {
-        this.$emit(
-          'input',
-          this.value.filter(categoryId => categoryId !== category.category_id)
-        )
+        this.$emit('input', this.value.filter(categoryId => categoryId !== category.category_id))
       } else {
         this.$emit('input', [...this.value, category.category_id])
       }
@@ -52,14 +52,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~theme/css/variables/colors';
+@import "~theme/css/variables/colors";
 $break-large: 1030px;
 
 .categories {
-  padding: 0 10px;
   &__heading {
     width: 100%;
-    margin: 0 0 15px 0;
   }
 
   &__handler {
@@ -84,7 +82,7 @@ $break-large: 1030px;
       text-decoration: underline;
     }
     @media screen and (min-width: $break-large) {
-      &:hover {
+      &:hover{
         background: #333;
         color: #fff;
       }
@@ -95,5 +93,6 @@ $break-large: 1030px;
     display: block;
     margin-right: 15px;
   }
+
 }
 </style>
